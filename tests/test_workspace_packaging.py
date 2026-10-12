@@ -181,7 +181,17 @@ def test_root_metadata_declares_standalone_core_distribution() -> None:
     }
 
     dev_names = {_requirement_name(requirement) for requirement in config["dependency-groups"]["dev"]}
-    assert dev_names == {"pytest", "pytest-asyncio", "pytest-mock", "pytest-cov", "ruff", "mypy"}
+    assert dev_names == {
+        "pytest",
+        "pytest-asyncio",
+        "pytest-mock",
+        "pytest-cov",
+        "ruff",
+        "mypy",
+        "noren",
+        "mkdocs-material",
+        "mkdocstrings",
+    }
 
     uv_config = config.get("tool", {}).get("uv", {})
     assert "workspace" not in uv_config

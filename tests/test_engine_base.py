@@ -81,9 +81,9 @@ class SampleTTSEngine(TTSEngineBase):
             sample_rate=24000,
         )
 
-    def list_voices(self) -> list[str]:
+    def list_voices(self) -> list[dict[str, str]]:
         """Return a voice list held in memory, with no model access."""
-        return ["default"]
+        return [{"name": "default", "kind": "preset"}]
 
     async def _prepare(self) -> None:
         self.calls.append("prepare")
@@ -146,7 +146,7 @@ async def test_reads_are_immediate_before_during_and_after_model_work() -> None:
     await engine.prepare_started.wait()
     assert engine.health().state == "unprepared"
     assert engine.health().busy
-    assert engine.list_voices() == ["default"]
+    assert engine.list_voices() == [{"name": "default", "kind": "preset"}]
     assert not inspect.isawaitable(engine.capabilities)
     engine.prepare_gate.set()
     await task
@@ -154,7 +154,7 @@ async def test_reads_are_immediate_before_during_and_after_model_work() -> None:
     assert not engine.health().busy
     await engine.aclose()
     assert engine.health().state == "closed"
-    assert engine.list_voices() == ["default"]
+    assert engine.list_voices() == [{"name": "default", "kind": "preset"}]
     assert engine.capabilities.sample_rate == 24000
 
 
@@ -163,7 +163,7 @@ async def test_model_dependent_voice_list_rejects_unprepared_and_closed_state() 
     """モデルを読んで得る声一覧は用意の前と資源を返した後に状態の誤りを知らせる。"""
 
     class LoadedVoicesTTSEngine(SampleTTSEngine):
-        def list_voices(self) -> list[str]:
+        def list_voices(self) -> list[dict[str, str]]:
             if self.health().state != "ready":
                 raise error("EngineStateError")("Model voices require a prepared engine")
             return super().list_voices()
@@ -172,7 +172,7 @@ async def test_model_dependent_voice_list_rejects_unprepared_and_closed_state() 
     with pytest.raises(error("EngineStateError")):
         engine.list_voices()
     await engine.prepare()
-    assert engine.list_voices() == ["default"]
+    assert engine.list_voices() == [{"name": "default", "kind": "preset"}]
     await engine.aclose()
     with pytest.raises(error("EngineStateError")):
         engine.list_voices()

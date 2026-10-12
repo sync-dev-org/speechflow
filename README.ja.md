@@ -269,6 +269,11 @@ application は設定、credential、model weights とその取得、外部 proc
 担います。core は `.env` file を読みません。音声 file への書き出し、resampling、effect、
 echo cancellation、noise suppression、音声認識、対話の進行は core の範囲外です。
 
+## ドキュメント
+
+[ドキュメントのガイド](https://sync-dev-org.github.io/speechflow/) から、engine の用意と終了、
+同期の code から呼ぶ関数、音声データ、error の API reference を参照できます。
+
 ## 開発
 
 [公開用の repository](https://github.com/sync-dev-org/speechflow) は core の source と test を
@@ -283,6 +288,7 @@ uv run ruff check
 uv run ruff format --check
 uv run mypy
 uv build --wheel
+uv run mkdocs build --strict
 ```
 
 各 engine module の repository は、自身の metadata、lock、source、test、build、配布を

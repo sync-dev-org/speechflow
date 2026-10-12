@@ -1,0 +1,37 @@
+site_name: speechflow
+site_description: Engine-neutral async text-to-speech contracts and audio data
+docs_dir: docs
+repo_url: https://github.com/sync-dev-org/speechflow
+repo_name: sync-dev-org/speechflow
+strict: true
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.sections
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - src
+          options:
+            docstring_style: sphinx
+            members: true
+            members_order: source
+            show_root_heading: true
+            show_root_full_path: false
+            show_source: false
+            show_if_no_docstring: true
+            signature_crossrefs: true
+
+nav:
+  - Home: index.md
+  - API reference:
+      - Engines and health: api/engine.md
+      - Synchronous helpers: api/sync.md
+      - Audio data: api/audio.md
+      - Errors: api/errors.md

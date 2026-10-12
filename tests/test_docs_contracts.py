@@ -16,6 +16,7 @@ GATE_COMMANDS = (
     "uv run ruff format --check",
     "uv run mypy",
     "uv build --wheel",
+    "uv run mkdocs build --strict",
 )
 REQUIRED_COMMANDS = {
     "README.md": GATE_COMMANDS,

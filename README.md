@@ -278,6 +278,11 @@ external process management, and deployment. The core does not load `.env` files
 Audio file output, resampling, effects, echo cancellation, noise suppression,
 speech recognition, and conversation management are outside the core's scope.
 
+## Documentation
+
+The [documentation guide](https://sync-dev-org.github.io/speechflow/) links to the
+API reference for engines and lifecycle, synchronous helpers, audio data, and errors.
+
 ## Development
 
 The [public repository](https://github.com/sync-dev-org/speechflow) contains the
@@ -292,6 +297,7 @@ uv run ruff check
 uv run ruff format --check
 uv run mypy
 uv build --wheel
+uv run mkdocs build --strict
 ```
 
 Each engine module repository owns its metadata, lock, source, tests, builds, and
