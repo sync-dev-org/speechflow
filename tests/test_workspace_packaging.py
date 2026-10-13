@@ -154,13 +154,16 @@ def test_sdist_builds_core_wheel_without_development_hook(built_sdist: Path, bui
 @pytest.mark.req("SP-SF-047")
 @pytest.mark.req("SP-SF-048")
 def test_wheel_metadata_publishes_readme_and_public_repository(built_wheel: Path) -> None:
-    """The wheel description contains the README and links to the public repository."""
+    """The wheel description contains the README and links to the public repository and documentation site."""
     metadata, _ = _wheel_metadata(built_wheel)
     assert metadata["Description-Content-Type"] == "text/markdown"
     description = metadata.get_payload()
     assert isinstance(description, str)
     assert description.strip() == (REPOSITORY_ROOT / "README.md").read_text(encoding="utf-8").strip()
-    assert metadata.get_all("Project-URL", []) == ["Repository, https://github.com/sync-dev-org/speechflow"]
+    assert metadata.get_all("Project-URL", []) == [
+        "Repository, https://github.com/sync-dev-org/speechflow",
+        "Documentation, https://sync-dev-org.github.io/speechflow/",
+    ]
 
 
 @pytest.mark.req("SP-SF-028")

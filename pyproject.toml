@@ -25,6 +25,7 @@ dependencies = [
 
 [project.urls]
 Repository = "https://github.com/sync-dev-org/speechflow"
+Documentation = "https://sync-dev-org.github.io/speechflow/"
 
 [build-system]
 requires = ["hatchling", "hatch-vcs"]
@@ -38,7 +39,7 @@ dev = [
     "pytest-cov>=6.0.0",
     "ruff",
     "mypy>=2.2.0",
-    "noren==0.2.0",
+    "noren==0.3.0",
     "mkdocs-material>=9.7.7",
     "mkdocstrings[python]>=1.0.6",
 ]
