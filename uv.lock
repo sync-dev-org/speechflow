@@ -486,18 +486,6 @@ wheels = [
 ]
 
 [[package]]
-name = "noren"
-version = "0.3.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "pyyaml" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/61/0f/8598649a3d026faacab844b77355eb399b7650033246fe39b0cff64db23e/noren-0.3.0.tar.gz", hash = "sha256:0945f6b64843ec78812f1125c6bd3286bfd57496b2fe138a425d3a7747dcf271", size = 40520, upload-time = "2026-10-12T23:52:15.895Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/7c/58/56402a5952294e86567de7ef91d23e8d43df6127be7b313af29d2ae0d372/noren-0.3.0-py3-none-any.whl", hash = "sha256:3cbfd17c005235382cf2e2284013649212463b5e3e0af87c1a9feed68886b978", size = 17548, upload-time = "2026-10-12T23:52:14.314Z" },
-]
-
-[[package]]
 name = "numpy"
 version = "2.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -769,15 +757,16 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "mkdocs-material" },
-    { name = "mkdocstrings", extra = ["python"] },
     { name = "mypy" },
-    { name = "noren" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
     { name = "pytest-cov" },
     { name = "pytest-mock" },
     { name = "ruff" },
+]
+docs = [
+    { name = "mkdocs-material" },
+    { name = "mkdocstrings", extra = ["python"] },
 ]
 
 [package.metadata]
@@ -785,15 +774,16 @@ requires-dist = [{ name = "numpy", specifier = ">=1.26.4" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "mkdocs-material", specifier = ">=9.7.7" },
-    { name = "mkdocstrings", extras = ["python"], specifier = ">=1.0.6" },
     { name = "mypy", specifier = ">=2.2.0" },
-    { name = "noren", specifier = "==0.3.0" },
     { name = "pytest", specifier = ">=8.3.5" },
     { name = "pytest-asyncio", specifier = ">=0.24.0" },
     { name = "pytest-cov", specifier = ">=6.0.0" },
     { name = "pytest-mock", specifier = ">=3.14.0" },
     { name = "ruff" },
+]
+docs = [
+    { name = "mkdocs-material", specifier = ">=9.7.7" },
+    { name = "mkdocstrings", extras = ["python"], specifier = ">=1.0.6" },
 ]
 
 [[package]]

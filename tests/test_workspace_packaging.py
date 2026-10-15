@@ -191,14 +191,22 @@ def test_root_metadata_declares_standalone_core_distribution() -> None:
         "pytest-cov",
         "ruff",
         "mypy",
-        "noren",
-        "mkdocs-material",
-        "mkdocstrings",
     }
 
     uv_config = config.get("tool", {}).get("uv", {})
     assert "workspace" not in uv_config
     assert "sources" not in uv_config
+
+
+@pytest.mark.req("SP-SF-070")
+def test_documentation_dependencies_are_separate_and_installed_by_default() -> None:
+    """Documentation builds use a dedicated locked group that local verification installs by default."""
+    config = _config()
+    assert config["dependency-groups"]["docs"] == [
+        "mkdocs-material>=9.7.7",
+        "mkdocstrings[python]>=1.0.6",
+    ]
+    assert set(config["tool"]["uv"]["default-groups"]) == {"dev", "docs"}
 
 
 def test_repository_tools_target_only_root_source_and_tests() -> None:
